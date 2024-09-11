@@ -15,8 +15,9 @@ import { signIn, signUp } from "@/lib/actions/user.actions";
 
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState<any>(null);
   const formSchema = authFormSchema(type);
+  
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -37,7 +38,7 @@ const AuthForm = ({ type }: { type: string }) => {
         setUser(newUser)
       }
       if (type === "sign-in") {
-        const response = signIn({
+        const response : any = signIn({
           email: data.email,
           password: data.password,
         });
@@ -67,7 +68,7 @@ const AuthForm = ({ type }: { type: string }) => {
         </Link>
         <div className="flex flex-col gap-1 md:gap-3">
           <h1 className="text-24 lg:text-36 font-semibold text-gray-900">
-            {user ? "link Account" : type === "sign-up" ? "Sign Up" : "Sign In"}
+            {user ? "Link Account" : type === "sign-up" ? "Sign Up" : "Sign In"}
             <p className="text-16 font-normal text-gray-600">
               {user
                 ? "Link your account to get Started"
